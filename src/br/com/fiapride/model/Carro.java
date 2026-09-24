@@ -1,29 +1,27 @@
 package br.com.fiapride.model;
 
-public class Carro {// <-- Use o nome do SEU objeto
+// A palavra 'extends' faz a mágica da herança acontecer!
+public class Carro extends Veiculo {
 
-	// As características que você pensou
-	public String marca;
-	public String cor;
-	public int ano;
+	// Atributo exclusivo do Carro (a mãe Veiculo não tem isso)
+	private int capacidadePassageiros;
 
-	public void alterarCor(String novaCor) {
+	// CONSTRUTOR DA FILHA
+	public Carro(String placa, String modelo, int capacidadePassageiros) {
+		// 'super' significa SUPERCLASSE (Mãe).
+		// Estamos repassando a placa e o modelo para o construtor da mãe resolver!
+		super(placa, modelo);
 
-		if (novaCor != null && !novaCor.trim().isEmpty()) {
-			cor = novaCor;
-			System.out.println("Cor alterada para: " + cor);
-		} else {
-			System.out.println("Erro: a cor não pode ser vazia.");
-		}
+		// E aqui o Carro resolve o que é dele:
+		this.setCapacidadePassageiros(capacidadePassageiros);
 	}
 
-	public void atualizarAno(int novoAno) {
+	// Getters e Setters específicos do Carro
+	public int getCapacidadePassageiros() {
+		return this.capacidadePassageiros;
+	}
 
-            if (novoAno >= 1886 && novoAno <= 2026) {
-                ano = novoAno;
-                System.out.println("Ano atualizado para: " + ano);
-            } else {
-                System.out.println("Erro: ano inválido.");
-            }
-       }
+	private void setCapacidadePassageiros(int capacidadePassageiros) {
+		this.capacidadePassageiros = capacidadePassageiros;
+	}
 }
